@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+  គេហទំព័រគំរូ៖ ហាងកាហ្វេតូចមួយ (ទំព័រតែមួយ, HTML + CSS ប៉ុណ្ណោះ)
+  របៀបប្រើ៖ ចុចពីរដងលើឯកសារនេះដើម្បីបើកក្នុង browser (ត្រូវការអ៊ីនធឺណិតសម្រាប់ font ខ្មែរ)
+  ត្រូវកែសម្រាប់អតិថិជនពិត៖ ឈ្មោះហាង, ម៉ឺនុយ/តម្លៃ, ម៉ោងបើក, អាសយដ្ឋាន, តំណ Telegram/Facebook/ទូរស័ព្ទ
+-->
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<!-- បន្ទាត់នេះធ្វើឱ្យគេហទំព័រមើលបានល្អលើទូរស័ព្ទ -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shikarufu Coffee</title>
+<meta name="description" content="Shikarufu Coffee">
+<link rel="icon" href="Icon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Moul សម្រាប់ចំណងជើង, Kantumruy Pro សម្រាប់អត្ថបទធម្មតា -->
+<link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Moul&display=swap" rel="stylesheet">
+<style>
+/* ពណ៌ទាំងអស់នៅទីនេះ៖ កែត្រង់នេះ ប្តូរពណ៌ទាំងគេហទំព័រ */
+:root{
+  --paper:#ffffff;   /* ផ្ទៃខាងក្រោយ */
+  --ink:#14213d;     /* ពណ៌អក្សរ */
+  --krama:#316a17;   /* ពណ៌ក្រមា (ក្រហម) */
+  --sky:#dce6f5;     /* ផ្ទៃខាងក្រោយផ្នែក "អំពីយើង" */
+  --line:#9aa8c4;    /* ពណ៌បន្ទាត់ */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Kantumruy Pro","Noto Sans Khmer",sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;font-size:1.05rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--krama);outline-offset:3px} /* បង្ហាញស៊ុមពេលប្រើ keyboard */
+
+/* .wrap = ប្រអប់កណ្តាលដែលកំណត់ទទឹងអតិបរមា */
+.wrap{max-width:960px;margin:0 auto;padding:0 5%}
+
+/* ក្បាលទំព័រ */
+header .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-top:16px;padding-bottom:16px}
+.logo{font-family:"Moul",serif;font-size:1.3rem;text-decoration:none}
+nav a{margin-left:20px;font-weight:600;text-decoration:none}
+nav a:hover{color:var(--krama)}
+
+/* ផ្ទាំងក្រមា៖ ធ្វើពីរូបមន្ត gradient ប៉ុណ្ណោះ គ្មានរូបភាព */
+.krama{height:36px;background:repeating-conic-gradient(var(--krama) 0 25%,#fff 0 50%) 0 0/36px 36px}
+
+h1,h2{font-family:"Moul","Noto Sans Khmer",serif;font-weight:400;line-height:1.5}
+h2{font-size:1.5rem;margin-bottom:28px}
+h3{font-size:1.1rem;margin-bottom:8px}
+section{padding:56px 0}
+
+/* ផ្នែកដំបូង (hero) */
+.hero{padding:64px 0 56px}
+.hero h1{font-size:clamp(1.8rem,5.5vw,3rem);max-width:16em}
+.hero p{margin:20px 0 28px;max-width:32em}
+
+/* ប៊ូតុង */
+.btn{display:inline-block;padding:12px 26px;background:var(--krama);color:#fff;font-weight:700;text-decoration:none;border-radius:4px;border:2px solid var(--krama);transition:background .2s}
+.btn:hover{background:var(--ink);border-color:var(--ink)}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:#fff}
+
+/* ម៉ឺនុយ៖ ឈ្មោះ ........ តម្លៃ (ចំណុចជាប់គ្នាធ្វើពី border dotted) */
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 56px}
+.menu{list-style:none}
+.menu li{display:flex;align-items:baseline;gap:10px;padding:6px 0}
+.dots{flex:1;border-bottom:2px dotted var(--line)}
+.price{font-weight:700;color:var(--krama)}
+
+/* អំពីយើង + ម៉ោងបើក */
+.about{background:var(--sky)}
+.about .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+dl div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--line)}
+dd{font-weight:600}
+
+/* ទំនាក់ទំនង */
+.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+footer{padding:24px 0 32px;font-size:.9rem}
+
+/* លើអេក្រង់តូច (ទូរស័ព្ទ)៖ ប្តូរពី ២ ជួរឈរ មក ១ ជួរឈរ */
+@media (max-width:700px){
+  .menu-cols,.about .wrap{grid-template-columns:1fr}
+  nav a{margin-left:0;margin-right:16px}
+}
+/* រំកិលរលូន ប៉ុន្តែគោរពអ្នកដែលបិទ animation */
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+textarea{width:100%;padding:10px 12px;font:inherit;color:var(--ink);border:2px solid var(--line);border-radius:4px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Shikarufu</a>
+    <nav>
+      <a href="#menu">ម៉ឺនុយ</a>
+      <a href="#about">អំពីយើង</a>
+      <a href="#contact">ទំនាក់ទំនង</a>
+    </nav>
+  </div>
+</header>
+<div class="krama" aria-hidden="true"></div>
+
+<main id="top">
+
+  <!-- ផ្នែកទី ១៖ ការណែនាំ -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Life hurts, Shikarufu Coffee heals.</h1>
+      <p>សប្បាយចិត្តក៏ផឹក សេដក៏ផឹក ប្រឡងជាប់ក៏ផឹក ប្រឡងធ្លាក់ក៏ផឹក singleក៏ផឹក coupleក៏ផឹក ផឹកបានទាំងចាស់ទាំងក្មេងជាមួយកាហ្វេ Shikarufu</p>
+      <a class="btn" href="#menu">មើលម៉ឺនុយ</a>
+      <a class="btn alt" href="https://t.me/Sovannsivfong">កម្ម៉ង់តាម Telegram</a>
+    </div>
+  </section>
+  <div class="krama" aria-hidden="true"></div>
+
+  <!-- ផ្នែកទី ២៖ ម៉ឺនុយ (ចង់បន្ថែមមុខម្ហូប ចម្លង <li> មួយបន្ទាត់ទៅដាក់ក្នុង <ul>) -->
+  <section id="menu">
+    <div class="wrap">
+      <h2>ម៉ឺនុយ</h2>
+      <div class="menu-cols">
+        <div>
+          <h3>ភេសជ្ជៈ</h3>
+          <ul class="menu">
+            <li><span>កាហ្វេទឹកដោះគោ</span><span class="dots"></span><span class="price">$1.50</span></li>
+            <li><span>កាហ្វេទឹកកក</span><span class="dots"></span><span class="price">$1.75</span></li>
+            <li><span>តែបៃតងត្រជាក់</span><span class="dots"></span><span class="price">$2.00</span></li>
+            <li><span>ទឹកក្រូចឆ្មារ</span><span class="dots"></span><span class="price">$1.50</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>នំ</h3>
+          <ul class="menu">
+            <li><span>នំប៉័ងប៊ឺ</span><span class="dots"></span><span class="price">$1.25</span></li>
+            <li><span>នំខេកសូកូឡា</span><span class="dots"></span><span class="price">$2.50</span></li>
+            <li><span>នំក្រួសសង់</span><span class="dots"></span><span class="price">$2.00</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ផ្នែកទី ៣៖ អំពីយើង + ម៉ោងបើក -->
+  <section id="about" class="about">
+    <div class="wrap">
+      <div>
+        <h2>សូមជួយផ្តល់មតិរាល់កំហុសឆ្គង</h2>
+        <textarea id="msg" name="msg" rows="8" placeholder="សរសេរសារនៅទីនេះ"></textarea>
+      </div>
+      <div>
+        <h2>ម៉ោងបើក</h2>
+        <dl>
+          <div><dt>ច័ន្ទ – សុក្រ</dt><dd>៦:០០ – ២០:០០</dd></div>
+          <div><dt>សៅរ៍ – អាទិត្យ</dt><dd>៧:០០ – ២១:០០</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ផ្នែកទី ៤៖ ទំនាក់ទំនង (ប្តូរតំណ YOUR_USERNAME, YOUR_PAGE និងលេខទូរស័ព្ទ) -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>ទំនាក់ទំនង</h2>
+      <p>កម្ម៉ង់មុន ឬសួរអ្វីៗ អាចទាក់ទងយើងតាមរយៈ៖</p>
+      <div class="buttons">
+        <a class="btn" href="https://t.me/Shikarufu">Telegram</a>
+        <a class="btn alt" href="https://web.facebook.com/ghpbg26fhr">Facebook</a>
+        <a class="btn alt" href="tel:+855000000000">ទូរស័ព្ទ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="krama" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">© 2026 Shikarufu</div>
+</footer>
+
+<!--
+  លំហាត់សម្រាប់ហាត់រៀន៖
+  ១. ប្តូរតម្លៃ --krama និង --ink ក្នុង :root ហើយមើលពណ៌ទាំងទំព័រផ្លាស់ប្តូរ
+  ២. បន្ថែមផ្នែកថ្មី "រូបភាព" ដោយប្រើ <img> និង CSS grid (ដាក់រូបក្នុង folder images/)
+  ៣. សាកល្បងប្តូរ .menu-cols ទៅ ៣ ជួរឈរ ហើយមើលលើទូរស័ព្ទតាមរយៈ DevTools (F12)
+-->
+</body>
+</html>
